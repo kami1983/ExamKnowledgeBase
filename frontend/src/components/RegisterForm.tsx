@@ -7,9 +7,9 @@ interface RegisterFormProps {}
 export default function RegisterForm({}: RegisterFormProps) {
   const [formData, setFormData] = useState({
     username: '',
-    email: '',
     password: '',
-    confirmPassword: ''
+    confirmPassword: '',
+    pincode: ''
   })
   const [loading, setLoading] = useState(false)
   const [message, setMessage] = useState('')
@@ -34,8 +34,8 @@ export default function RegisterForm({}: RegisterFormProps) {
         },
         body: JSON.stringify({
           username: formData.username,
-          email: formData.email,
-          password: formData.password
+          password: formData.password,
+          pincode: formData.pincode
         }),
       })
 
@@ -46,9 +46,9 @@ export default function RegisterForm({}: RegisterFormProps) {
         // 清空表单
         setFormData({
           username: '',
-          email: '',
           password: '',
-          confirmPassword: ''
+          confirmPassword: '',
+          pincode: ''
         })
       } else {
         setMessage(data.error || '注册失败')
@@ -86,17 +86,17 @@ export default function RegisterForm({}: RegisterFormProps) {
           />
         </div>
         <div>
-          <label htmlFor="email" className="sr-only">
-            邮箱
+          <label htmlFor="pincode" className="sr-only">
+            PIN码
           </label>
           <input
-            id="email"
-            name="email"
-            type="email"
+            id="pincode"
+            name="pincode"
+            type="password"
             required
             className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-            placeholder="邮箱地址"
-            value={formData.email}
+            placeholder="管理员PIN码"
+            value={formData.pincode}
             onChange={handleChange}
           />
         </div>

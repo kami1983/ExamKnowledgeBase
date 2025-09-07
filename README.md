@@ -128,15 +128,26 @@ python init_db.py reset
   CREATE TABLE user (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
       username VARCHAR(80) UNIQUE NOT NULL,
-      email VARCHAR(120) UNIQUE NOT NULL,
-      password_hash VARCHAR(120) NOT NULL
+      password_hash VARCHAR(120) NOT NULL,
+      created_at DATETIME DEFAULT CURRENT_TIMESTAMP
   );
   ```
+
+### 环境变量配置
+项目使用 `.env` 文件管理环境变量：
+
+```bash
+# 复制环境变量示例文件
+cp .env.example .env
+
+# 编辑环境变量（可选）
+# ADMIN_PINCODE=123456  # 管理员PIN码，用于用户注册验证
+```
 
 ### 默认管理员账户
 - **用户名**: admin
 - **密码**: admin123
-- **邮箱**: admin@example.com
+- **PIN码**: 123456 (用于注册新用户)
 
 ## 使用说明
 

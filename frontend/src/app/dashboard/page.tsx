@@ -5,7 +5,7 @@ import { useState, useEffect } from 'react'
 interface User {
   id: number
   username: string
-  email: string
+  created_at?: string
 }
 
 export default function Dashboard() {
@@ -83,7 +83,7 @@ export default function Dashboard() {
               <div className="bg-white p-6 rounded-lg shadow">
                 <p><strong>用户ID:</strong> {user.id}</p>
                 <p><strong>用户名:</strong> {user.username}</p>
-                <p><strong>邮箱:</strong> {user.email}</p>
+                <p><strong>注册时间:</strong> {user.created_at ? new Date(user.created_at).toLocaleString() : '未知'}</p>
               </div>
             </div>
           </div>

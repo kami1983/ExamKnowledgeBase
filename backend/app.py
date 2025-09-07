@@ -3,6 +3,10 @@ from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_cors import CORS
 import os
+from dotenv import load_dotenv
+
+# 加载环境变量
+load_dotenv()
 
 app = Flask(__name__)
 CORS(app)  # 允许跨域请求
@@ -18,8 +22,8 @@ db = SQLAlchemy(app)
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(80), unique=True, nullable=False)
-    email = db.Column(db.String(120), unique=True, nullable=False)
     password_hash = db.Column(db.String(120), nullable=False)
+    created_at = db.Column(db.DateTime, default=db.func.current_timestamp())
     
     def __repr__(self):
         return f'<User {self.username}>'
@@ -32,20 +36,21 @@ with app.app_context():
 def register():
     data = request.get_json()
     
-    if not data or not data.get('username') or not data.get('email') or not data.get('password'):
-        return jsonify({'error': '缺少必要字段'}), 400
+    if not data or not data.get('username') or not data.get('password') or not data.get('pincode'):
+        return jsonify({'error': '缺少必要字段：用户名、密码和PIN码'}), 400
+    
+    # 验证PIN码
+    admin_pincode = os.getenv('ADMIN_PINCODE', '123456')
+    if data['pincode'] != admin_pincode:
+        return jsonify({'error': 'PIN码错误'}), 401
     
     # 检查用户是否已存在
     if User.query.filter_by(username=data['username']).first():
         return jsonify({'error': '用户名已存在'}), 400
     
-    if User.query.filter_by(email=data['email']).first():
-        return jsonify({'error': '邮箱已存在'}), 400
-    
     # 创建新用户
     user = User(
         username=data['username'],
-        email=data['email'],
         password_hash=generate_password_hash(data['password'])
     )
     
@@ -69,7 +74,7 @@ def login():
             'user': {
                 'id': user.id,
                 'username': user.username,
-                'email': user.email
+                'created_at': user.created_at.isoformat() if user.created_at else None
             }
         }), 200
     else:
@@ -81,7 +86,7 @@ def get_users():
     return jsonify([{
         'id': user.id,
         'username': user.username,
-        'email': user.email
+        'created_at': user.created_at.isoformat() if user.created_at else None
     } for user in users])
 
 @app.route('/api/health', methods=['GET'])
