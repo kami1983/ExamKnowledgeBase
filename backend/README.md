@@ -17,12 +17,41 @@
 pip install -r requirements.txt
 ```
 
-2. 运行应用：
+2. 初始化数据库：
+```bash
+python init_db.py init
+```
+
+3. 运行应用：
 ```bash
 python app.py
 ```
 
 服务器将在 http://localhost:6001 启动
+
+## 数据库管理
+
+### 初始化数据库
+```bash
+python init_db.py init
+```
+- 创建数据库表
+- 创建默认管理员用户 (admin/admin123)
+
+### 查看数据库信息
+```bash
+python init_db.py info
+```
+
+### 重置数据库
+```bash
+python init_db.py reset
+```
+
+### 数据库文件
+- 位置: `backend/users.db`
+- 类型: SQLite
+- 表结构: 见 `schema.sql`
 
 ## API接口
 

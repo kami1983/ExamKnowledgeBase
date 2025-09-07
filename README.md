@@ -98,9 +98,48 @@ npm run dev
 - `GET /api/users` - 获取用户列表
 - `GET /api/health` - 健康检查
 
+## 数据库管理
+
+### 初始化数据库
+```bash
+cd backend
+python init_db.py init
+```
+- 创建数据库表
+- 创建默认管理员用户 (admin/admin123)
+
+### 查看数据库信息
+```bash
+cd backend
+python init_db.py info
+```
+
+### 重置数据库
+```bash
+cd backend
+python init_db.py reset
+```
+
+### 数据库文件
+- **位置**: `backend/users.db`
+- **类型**: SQLite
+- **表结构**: 
+  ```sql
+  CREATE TABLE user (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      username VARCHAR(80) UNIQUE NOT NULL,
+      email VARCHAR(120) UNIQUE NOT NULL,
+      password_hash VARCHAR(120) NOT NULL
+  );
+  ```
+
+### 默认管理员账户
+- **用户名**: admin
+- **密码**: admin123
+- **邮箱**: admin@example.com
+
 ## 使用说明
 
 1. 访问 http://localhost:6002
-2. 点击"注册"创建新账户
-3. 使用用户名和密码登录
-4. 登录成功后进入仪表板页面
+2. 使用默认管理员账户登录，或点击"注册"创建新账户
+3. 登录成功后进入仪表板页面
