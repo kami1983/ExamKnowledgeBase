@@ -2,9 +2,9 @@
 
 import { useState } from 'react'
 
-interface RegisterFormProps {}
+interface RegisterFormProps { }
 
-export default function RegisterForm({}: RegisterFormProps) {
+export default function RegisterForm({ }: RegisterFormProps) {
   const [formData, setFormData] = useState({
     username: '',
     password: '',
@@ -79,7 +79,7 @@ export default function RegisterForm({}: RegisterFormProps) {
             name="username"
             type="text"
             required
-            className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+            className="appearance-none rounded-none relative block w-full px-4 py-3 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 text-base min-h-[48px]"
             placeholder="用户名"
             value={formData.username}
             onChange={handleChange}
@@ -94,7 +94,7 @@ export default function RegisterForm({}: RegisterFormProps) {
             name="pincode"
             type="password"
             required
-            className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+            className="appearance-none rounded-none relative block w-full px-4 py-3 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 text-base min-h-[48px]"
             placeholder="管理员PIN码"
             value={formData.pincode}
             onChange={handleChange}
@@ -109,7 +109,7 @@ export default function RegisterForm({}: RegisterFormProps) {
             name="password"
             type="password"
             required
-            className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+            className="appearance-none rounded-none relative block w-full px-4 py-3 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 text-base min-h-[48px]"
             placeholder="密码"
             value={formData.password}
             onChange={handleChange}
@@ -124,7 +124,7 @@ export default function RegisterForm({}: RegisterFormProps) {
             name="confirmPassword"
             type="password"
             required
-            className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+            className="appearance-none rounded-none relative block w-full px-4 py-3 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 text-base min-h-[48px]"
             placeholder="确认密码"
             value={formData.confirmPassword}
             onChange={handleChange}

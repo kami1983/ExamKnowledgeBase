@@ -2,9 +2,9 @@
 
 import { useState } from 'react'
 
-interface LoginFormProps {}
+interface LoginFormProps { }
 
-export default function LoginForm({}: LoginFormProps) {
+export default function LoginForm({ }: LoginFormProps) {
   const [formData, setFormData] = useState({
     username: '',
     password: ''
@@ -63,7 +63,7 @@ export default function LoginForm({}: LoginFormProps) {
             name="username"
             type="text"
             required
-            className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+            className="appearance-none rounded-none relative block w-full px-4 py-3 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 text-base min-h-[48px]"
             placeholder="用户名"
             value={formData.username}
             onChange={handleChange}
@@ -78,7 +78,7 @@ export default function LoginForm({}: LoginFormProps) {
             name="password"
             type="password"
             required
-            className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+            className="appearance-none rounded-none relative block w-full px-4 py-3 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 text-base min-h-[48px]"
             placeholder="密码"
             value={formData.password}
             onChange={handleChange}
